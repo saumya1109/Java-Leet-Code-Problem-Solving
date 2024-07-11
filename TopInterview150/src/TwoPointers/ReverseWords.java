@@ -47,8 +47,50 @@ public class ReverseWords {
     }
 
     public static String reverseWordsWithTwoPointers(String s) {
-      //todo
+        // Convert the string to a character array
+        char[] str = s.toCharArray();
+        int n = str.length;
 
-        return "";
+        // Reverse the entire string
+        reverse(str, 0, n - 1);
+
+        // Reverse each word in the reversed string
+        reverseWords(str, n);
+
+        // Clean up spaces and construct the final result
+        return cleanSpaces(str, n);
+    }
+
+    private static void reverse(char[] str, int left, int right) {
+        while (left < right) {
+            char temp = str[left];
+            str[left] = str[right];
+            str[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    private static void reverseWords(char[] str, int n) {
+        int start = 0, end = 0;
+
+        while (start < n) {
+            while (start < end || (start < n && str[start] == ' ')) start++;
+            while (end < start || (end < n && str[end] != ' ')) end++;
+            reverse(str, start, end - 1);
+        }
+    }
+
+    private static String cleanSpaces(char[] str, int n) {
+        int i = 0, j = 0;
+
+        while (j < n) {
+            while (j < n && str[j] == ' ') j++;
+            while (j < n && str[j] != ' ') str[i++] = str[j++];
+            while (j < n && str[j] == ' ') j++;
+            if (j < n) str[i++] = ' ';
+        }
+
+        return new String(str).substring(0, i);
     }
 }
