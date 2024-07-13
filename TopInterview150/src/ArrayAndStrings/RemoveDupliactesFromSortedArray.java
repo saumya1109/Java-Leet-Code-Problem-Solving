@@ -1,27 +1,24 @@
 package ArrayAndStrings;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class RemoveDupliactesFromSortedArray {
     public static void main(String[] args) {
         int[] array = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
 
-        int[] arr1 = {1, 2, 3, 5, 6, 7};
-        int[] arr2 = {3, 6, 7, 8, 20};
-
-        findDuplicates(arr1,arr2);
+        System.out.println( removeDuplicatesUsingTwoPointer(array));
 
         int[] output = removeDuplicates(array);
+
         for (int i = 0; i < output.length; i++) {
             System.out.print(output[i]);
         }
+
 
     }
 
 
     public static int[] removeDuplicates(int[] nums) {
-
         int index = 0;
+
 
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] != nums[index]) {
@@ -34,28 +31,29 @@ public class RemoveDupliactesFromSortedArray {
     }
 
 
-    static int[] findDuplicates(int[] arr1, int[] arr2) {
+    public static int removeDuplicatesUsingTwoPointer(int[] array) {
+    /* We are going to use two pointers technique here,
+    * 0, 0, 1, 1, 1, 2, 2, 3, 3, 4   ptr1=0,ptr2=1
+    * the ptr1 will point to the position that needs to be filled
+    * ptr2 will find the unique elements
+    *
+    * Step1: Initialise ptr1 from the first position and ptr2 from the second position in the array
+    * Step2: Keep on comparing and puting the unique elements in the array until ptr2 is lesser than the lenth of the array
+    * Step3: return ptr1+1 as these are elements that are unique
+    * */
+        int ptr1 = 0;
+        int ptr2 = 1;
 
-        Set<Integer> set1 =  new LinkedHashSet<>();
-        Set<Integer> set2 =  new LinkedHashSet<>();
+        while (ptr2 != array.length) {
+            if (array[ptr1] == array[ptr2]) {
+                ptr2++;
+            } else {
+                ptr1++;
+                array[ptr1] = array[ptr2];
+            }
 
-        for(int i=0;i<arr1.length;i++ ){
-            set1.add(arr1[i]);
+
         }
-
-        for(int i=0;i<arr2.length;i++ ){
-            set2.add(arr2[i]);
-        }
-
-        set1.retainAll(set2);
-
-        System.out.println(set1);
-
-
-        return new int[]{};
-        // your code goes here
+        return ptr1 + 1;
     }
-
-
-
 }
