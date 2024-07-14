@@ -2,7 +2,8 @@ package ArrayAndStrings;
 
 public class RemoveDupliactesFromSortedArray {
     public static void main(String[] args) {
-        int[] array = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        //[] array = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        int[] array = {0, 0, 1, 1, 1, 2, 3, 3, 4};
 
         System.out.println( removeDuplicatesUsingTwoPointer(array));
 
@@ -33,7 +34,7 @@ public class RemoveDupliactesFromSortedArray {
 
     public static int removeDuplicatesUsingTwoPointer(int[] array) {
     /* We are going to use two pointers technique here,
-    * 0, 0, 1, 1, 1, 2, 2, 3, 3, 4   ptr1=0,ptr2=1
+    * 0, 0, 1, 1, 1, 2, 2, 3, 3, 4   ptr1=0 (left),ptr2=1 (right)
     * the ptr1 will point to the position that needs to be filled
     * ptr2 will find the unique elements
     *
