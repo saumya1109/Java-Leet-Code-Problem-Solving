@@ -4,18 +4,21 @@ import java.util.List;
 
 public class FindTargetIndicesAfterSortingArray {
     public static void main(String[] args) {
-        int[] nums1 = {1,2,5,2,3}; int target1 = 2;
-        int[] nums2 = {1,2,5,2,3}; int target2 = 3;
-        int[] nums3 = {1,2,5,2,3}; int target3 = 5;
+        int[] nums1 = {1, 2, 5, 2, 3};
+        int target1 = 2;
+        int[] nums2 = {1, 2, 5, 2, 3};
+        int target2 = 3;
+        int[] nums3 = {1, 2, 5, 2, 3};
+        int target3 = 5;
 
-        System.out.println(targetIndices(nums1,target1));
-        System.out.println(targetIndices(nums2,target2));
-        System.out.println(targetIndices(nums3,target3));
+        System.out.println(targetIndicesWithoutSorting(nums1, target1));
+        System.out.println(targetIndices(nums2, target2));
+        System.out.println(targetIndices(nums3, target3));
 
 
     }
 
-    public static  List<Integer> targetIndices(int[] nums, int target) {
+    public static List<Integer> targetIndices(int[] nums, int target) {
 
         //Time Complexity : O(NLogN)
         List<Integer> list = new ArrayList<>();
@@ -32,4 +35,31 @@ public class FindTargetIndicesAfterSortingArray {
         // returning the list
         return list;
     }
+
+
+    public static List<Integer> targetIndicesWithoutSorting(int[] nums, int target) {
+        int smallerThanTarget = 0;
+        int targetCount = 0;
+
+        // The idea is to count the number of elements smaller than the target
+        // without sorting the array. These elements will occupy the initial indices.
+        // Then, the target elements will come after them.
+
+        for (Integer n : nums) {
+            if (n < target) {
+                smallerThanTarget++;
+            } else if (n == target) {
+                targetCount++;
+            }
+        }
+
+        // Create the output list and add indices where the target would be
+        List<Integer> output = new ArrayList<>();
+        for (int i = 0; i < targetCount; i++) {
+            output.add(smallerThanTarget + i);
+        }
+        return output;
+    }
+
+
 }
