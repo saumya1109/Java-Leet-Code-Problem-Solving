@@ -1,15 +1,14 @@
 public class FindTheIndexOfTheFirstOccurrenceInAString {
     public static void main(String[] args) {
- /*       String haystack1 = "sadbutsad", needle1 = "sad";
+        String haystack1 = "sadbutsad", needle1 = "sad";
         String haystack2 = "leetcode", needle2 = "leeto";
-        String haystack3 = "aaa",needle3 = "aaaa";*/
+        String haystack3 = "aaa",needle3 = "aaaa";
         String haystack4 = "mississippi", needle4 = "issip";
 
 
-       /* System.out.println(findTheIndex(haystack1, needle1));
+        System.out.println(findTheIndex(haystack1, needle1));
         System.out.println(findTheIndex(haystack2, needle2));
-        System.out.println(findTheIndex(haystack3, needle3));*/
-
+        System.out.println(findTheIndex(haystack3, needle3));
         System.out.println(findTheIndex(haystack4, needle4));
 
     }
