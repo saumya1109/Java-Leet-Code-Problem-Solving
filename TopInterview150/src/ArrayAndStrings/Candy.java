@@ -36,7 +36,7 @@ public class Candy {
                 temp[i-1]= temp[i]+1;
             }
         }
-        
+
         // summing up the values in temp array
         for (int num : temp) {
             sum += num;
