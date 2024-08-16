@@ -13,13 +13,15 @@ public class MergeSortedArrays {
         int[] nums3 = {1, 2, 3, 4, 0, 0, 0}, nums4 = {2, 5, 6};
         int m1 = 4, n1 = 3;
         // System.out.println(merge(nums1, m, nums2, n));
-        System.out.println(merge(nums3, m1, nums2, n1));
+        System.out.println(merge1(nums1, m, nums2, n));
 
 
     }
 
 
     //Brute-force way     O((M+N)Log(M+N))
+    // Arrays.sort uses Timsort --> O(klogk)
+    // here
     public static List<Integer> mergeUsingArrayList(int[] nums1, int m, int[] nums2, int n) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < m; i++) {
@@ -63,5 +65,29 @@ public class MergeSortedArrays {
 
         return nums1;
     }
+
+
+    public static int[] merge1(int[] nums1, int m, int[] nums2, int n) {
+        int mEnd = m - 1;           // Last index of nums1's initial elements
+        int nEnd = n - 1;           // Last index of nums2
+        int totalLength = m + n - 1; // Last index of the merged array
+
+        // Merge nums1 and nums2 from the end to the beginning
+        while (mEnd >= 0 && nEnd >= 0) {
+            if (nums1[mEnd] > nums2[nEnd]) {
+                nums1[totalLength--] = nums1[mEnd--];
+            } else {
+                nums1[totalLength--] = nums2[nEnd--];
+            }
+        }
+
+        // If there are any remaining elements in nums2, place them in nums1
+        while (nEnd >= 0) {
+            nums1[totalLength--] = nums2[nEnd--];
+        }
+
+        return nums1;
+    }
+
 
 }
